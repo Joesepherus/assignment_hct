@@ -12,7 +12,7 @@ export default {
       data: require('../Fixtures/rateLimit.json')
     }
   },
-  getUser: (username) => {
+  getUser: username => {
     // This fixture only supports gantman or else returns skellock
     const gantmanData = require('../Fixtures/gantman.json')
     const skellockData = require('../Fixtures/skellock.json')
@@ -21,4 +21,12 @@ export default {
       data: username.toLowerCase() === 'gantman' ? gantmanData : skellockData
     }
   }
+  // getContacts: () => {
+  //   console.log('test')
+  //   console.log(data.items)
+  //   return {
+  //     ok: true,
+  //     data
+  //   }
+  // }
 }

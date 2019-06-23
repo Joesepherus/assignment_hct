@@ -35,12 +35,12 @@ export const request = (state, { username }) =>
 
 // successful avatar lookup
 export const success = (state, action) => {
-  const { avatar } = action
-  return state.merge({ fetching: false, error: null, avatar })
+  const { orders } = action
+  return state.merge({ fetching: false, error: null, orders })
 }
 
 // failed to get the avatar
-export const failure = (state) =>
+export const failure = state =>
   state.merge({ fetching: false, error: true, avatar: null })
 
 /* ------------- Hookup Reducers To Types ------------- */

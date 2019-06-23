@@ -2,7 +2,9 @@
 import apisauce from 'apisauce'
 
 // our "constructor"
-const create = (baseURL = 'https://api.github.com/') => {
+const create = (
+  baseURL = 'http://private-36f1e-contactstest.apiary-mock.com/'
+) => {
   // ------
   // STEP 1
   // ------
@@ -32,12 +34,17 @@ const create = (baseURL = 'https://api.github.com/') => {
   // sometimes specific actions need to be take on `403` or `401`, etc.
   //
   // Since we can't hide from that, we embrace it by getting out of the
-  // way at this level.
+  // way at this level.getRoot
   //
   const getRoot = () => api.get('')
   const getRate = () => api.get('rate_limit')
-  const getUser = (username) => api.get('search/users', {q: username})
-
+  const getUser = username => api.get('search/users', { q: username })
+  const getContacts = async () =>
+    api.get('contacts').then(response => response)
+  const getContactsOrders = async id =>
+    api.get('contacts/' + id + '/order').then(response => response)
+  const addContact = async contact =>
+    api.post('contacts', contact).then(response => response)
   // ------
   // STEP 3
   // ------
@@ -54,7 +61,10 @@ const create = (baseURL = 'https://api.github.com/') => {
     // a list of the API functions from step 2
     getRoot,
     getRate,
-    getUser
+    getUser,
+    getContacts,
+    getContactsOrders,
+    addContact
   }
 }
 
